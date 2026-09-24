@@ -1,0 +1,36 @@
+recipients:
+  - you@example.com
+
+llm:
+  base_url: https://openrouter.ai/api/v1
+  model: anthropic/claude-sonnet-5
+  max_tokens: 16000
+
+sources:
+  cop:
+    enabled: true
+    base_url: https://community.dhis2.org
+  jira:
+    enabled: true
+    base_url: https://dhis2.atlassian.net
+    project: DHIS2
+    # Matched against JIRA reporter display names (JIRA hides reporter emails
+    # via the API, so name-token matching is the only available signal).
+    eyeseetea_team:
+      - Jane Doe
+      - John Smith
+  newsletter:
+    enabled: true
+    sender: newsletter@dhis2.org
+  releases:
+    enabled: true
+    versions_url: https://releases.dhis2.org/v1/versions/stable.json
+  dev_portal:
+    enabled: true
+    feed_url: https://developers.dhis2.org/blog/rss.xml
+  github:
+    enabled: true
+    org: dhis2
+  youtube:
+    enabled: true
+    channel_id: UC7lT6wGX_IXkfguh2DvcrSA

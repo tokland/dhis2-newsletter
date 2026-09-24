@@ -1,0 +1,18 @@
+[project]
+name = "dhis2-newsletter"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx",
+    "feedparser",
+    "openai",
+    "jinja2",
+    "pydantic",
+    "pydantic-settings",
+    "python-dotenv",
+    "pyyaml",
+    "youtube-transcript-api",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
