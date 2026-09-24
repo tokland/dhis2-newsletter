@@ -1,42 +1,3 @@
-# DHIS2 Newsletter
-
-Weekly digest of DHIS2 activity (CoP, JIRA, GitHub, YouTube, releases, dev
-portal, official newsletter), filtered and summarized by an LLM, sent by email.
-
-## Setup
-
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -e .
-```
-
-Credentials go in `.env` (see `.env.example`). Copy `config.example.yaml` to `config.yaml` and edit it.
-
-## Run
-
-```
-source .venv/bin/activate
-python -m dhis2_newsletter.main --days 7
-```
-
-Sends the digest email to the recipients in `config.yaml`.
-
-Useful flags:
-- `--days N` — look back N days (default 7)
-- `--start YYYY-MM-DD` / `--end YYYY-MM-DD` — explicit date range instead of `--days`
-- `--dry-run` — print the digest instead of emailing it
-- `--skip-llm` — print raw fetched items only (no LLM call, no email) — quick way to check the sources are pulling data
-
-## Example
-
-Plain-text version of a real run (`--dry-run`, 2026-09-17 to 2026-09-24), also in
-[`docs/example-digest.txt`](docs/example-digest.txt). The email itself is HTML with the same content.
-
-<details>
-<summary>Show example digest</summary>
-
-```
 DHIS2 Weekly Digest — 2026-09-17 to 2026-09-24
 
 This week's biggest theme is DHIS2's evolving support for Apache Doris as an analytics database, with community discussions and several JIRA fixes addressing SQL incompatibilities and performance quirks. A severe metadata-creation bug tied to sharing settings, a tracker event table regression, and data-loss risks in indicator/option group deletion round out the technical highlights, while the community shared a strong nutrition logistics case study from Tajikistan and CDC's new LIS-DHIS2 integration toolkit gets a webinar.
@@ -115,25 +76,4 @@ OFFICIAL DHIS2 NEWSLETTER
 - Webinar: Lab Information System & DHIS2 Integration Toolkit
   <newsletter link redacted>
   A new LIS-DHIS2 integration toolkit developed with the US CDC, including a reference implementation and adaptation guidance, will be introduced in a webinar on Sept. 28, 2026 - relevant for surveillance program managers and integration developers.
-```
 
-</details>
-
-## Config
-
-Edit `config.yaml` to change recipients, enable/disable a source, or the LLM model.
-
-JIRA issues reported by an EyeSeeTea teammate (matched by name against
-`sources.jira.eyeseetea_team` in `config.yaml`) are always kept and marked
-with a ⭐ EyeSeeTea badge in the email, even if the LLM would otherwise have
-filtered them out as minor.
-
-## Schedule
-
-Runs automatically every Sunday at 22:00 (`crontab -l` to check, `crontab -e`
-to change) via `scripts/run_weekly.sh`. Logs to `logs/weekly.log`.
-
-## Cost
-
-One weekly run ≈ $0.16 in LLM usage (`anthropic/claude-sonnet-5` via
-OpenRouter, ~40k input / ~8k output tokens) — about $0.65/month.

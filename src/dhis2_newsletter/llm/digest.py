@@ -59,10 +59,11 @@ def build_digest(items: list[Item], client: OpenAI, llm_config: LLMConfig) -> di
     raw = choice.message.content
     usage = response.usage
     log.info(
-        "LLM digest call: finish_reason=%s prompt_tokens=%s completion_tokens=%s",
+        "LLM digest call: finish_reason=%s prompt_tokens=%s completion_tokens=%s reasoning_tokens=%s",
         choice.finish_reason,
         getattr(usage, "prompt_tokens", None),
         getattr(usage, "completion_tokens", None),
+        getattr(getattr(usage, "completion_tokens_details", None), "reasoning_tokens", None),
     )
     try:
         return json.loads(raw)
