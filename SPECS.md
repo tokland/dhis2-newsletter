@@ -53,7 +53,7 @@ Stored in `.env` (gitignored), template in `.env.example`.
 - [x] `JIRA_API_TOKEN` / `JIRA_EMAIL`
 - [x] `YOUTUBE_API_KEY` — verified working; official channel `UC7lT6wGX_IXkfguh2DvcrSA` (@dhis2org)
 - [x] `OPENROUTER_API_KEY` — LLM provider, model `anthropic/claude-sonnet-5`
-- [x] `SMTP_*` — Gmail SMTP (smtp.gmail.com:587), app password, from `pyarnau@gmail.com`.
+- [x] `SMTP_*` — Gmail SMTP (smtp.gmail.com:587), app password.
   Same creds double as IMAP (imap.gmail.com:993) for reading the newsletter source.
 
 Cadence: weekly.
